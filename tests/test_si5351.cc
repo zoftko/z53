@@ -19,7 +19,8 @@ TEST_F(TestSi5351, CalcFreq) {
         .omd_int = 8,
         .omd_num = 0,
         .omd_den = 1,
-        .ref_freq = REF_25};
+        .ref_freq = REF_25
+    };
     ASSERT_EQ(75e6, si5351_comp_freq(&config));
 
     config.fmd_num = 6;
