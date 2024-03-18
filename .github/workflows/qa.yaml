@@ -29,14 +29,12 @@ jobs:
   unittests:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-        with:
-          submodules: recursive
+      - uses: actions/checkout@v4
       - name: Install tools
-        run: sudo apt install ninja-build meson
+        run: sudo apt install cmake
+      - name: Setup
+        run: cmake -S . -B cmake-build
       - name: Build
-        run: |
-          meson setup build
-          meson compile -C build
-      - name: Run Tests
-        run: meson test -C build --verbose
+        run: cmake --build cmake-build
+      - name: Run
+        run: ctest --test-dir cmake-build/tests --verbose
